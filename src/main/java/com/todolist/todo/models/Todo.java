@@ -12,14 +12,11 @@ public class Todo {
 
     private String description;
 
-    private Integer isFinished;
-
     public Todo() {
     }
 
-    public Todo(String description, Integer isFinished) {
+    public Todo(String description) {
         this.description = description;
-        this.isFinished = isFinished;
     }
 
     public Integer getId() {
@@ -32,13 +29,5 @@ public class Todo {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public Integer getIsFinished() {
-        return isFinished;
-    }
-
-    public void setIsFinished(Integer isFinished) {
-        this.isFinished = isFinished;
     }
 }

@@ -34,23 +34,20 @@ public class TodoController {
     }
 
     @PostMapping("")
-    public ResponseEntity<Todo> addTodo(@RequestBody Todo todoInput) {
-        Todo todo = new Todo(todoInput.getDescription(), todoInput.getIsFinished());
+    public ResponseEntity<Todo> addTodo(@RequestBody String description) {
+        Todo todo = new Todo(description);
         todoRepo.save(todo);
         return ResponseEntity.ok(todo);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Todo> updateTodo(@PathVariable Integer id, @RequestBody Todo todoInput) {
+    public ResponseEntity<Todo> updateTodo(@PathVariable Integer id, String description) {
         Todo todo = todoRepo.findById(id).orElse(null);
         if (todo == null) {
             throw new IllegalArgumentException("Todo item does not exist");
         }
-        if (todoInput.getDescription() != null) {
-            todo.setDescription(todoInput.getDescription());
-        }
-        if (todoInput.getIsFinished() != null) {
-            todo.setIsFinished(todoInput.getIsFinished());
+        if (description != null) {
+            todo.setDescription(description);
         }
         todoRepo.save(todo);
         return ResponseEntity.ok(todo);
